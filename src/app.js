@@ -19,7 +19,7 @@ app.use(express.static(publicDirectoryPath))
 
 app.get('', (req, res) => {
     res.render('index', {
-        title: 'Weather App',
+        title: 'Weather',
         name: 'Abhishek Arya'
     })
 })
@@ -43,6 +43,22 @@ app.get('/weather', (req, res) => {
     res.send ({
         forecast: 'It is clear and sunny',
         location: 'India'
+    })
+})
+
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        name: 'Abhsihek Arya',
+        errorMessage: 'Help article not found'
+    })
+})
+
+app.get('*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        name: 'Abhishek Arya',
+        errorMessage: 'Page not found'
     })
 })
 
