@@ -41,13 +41,6 @@ app.get('/help', (req, res) => {
     })
 })
 
-// app.get('/weather', (req, res) => {
-//     res.send ({
-//         forecast: 'It is clear and sunny',
-//         location: 'India'
-//     })
-// })
-
 app.get('/products', (req, res) => {
     if (!req.query.search) {
         return res.send( {
@@ -70,14 +63,12 @@ app.get('/weather', (req, res) => {
 
     geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
         if (error) {
-            res.send({ error })
+            return res.send({ error })
         }
-        // console.log('Error', error)
-        // console.log('Data', data)
-    
+  
         forecast(latitude, longitude, (error, forecastData) => {
             if (error) {
-                res.send({ error })
+                return res.send({ error })
             }
 
             res.send({
